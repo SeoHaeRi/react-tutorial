@@ -1,28 +1,23 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function HistorySample({ history }) {
-    const goBack = () => {
-        history.goBack();
-    };
+function HistorySample() {
+  const navigate = useNavigate();
 
-    const goHome = () => {
-        history.push('/');
-    };
+  const goBack = () => {
+    navigate(-1);
+  };
 
-    useEffect(() => {
-        console.log('history');
-        const unblock = history.block('떠날건가?');
-        return () => {
-            unblock();
-        };
-    }, [history]);
+  const goHome = () => {
+    navigate('/');
+  };
 
-    return (
-        <div>
-            <button onClick={goBack}>뒤로가기</button>
-            <button onClick={goHome}>홈으로</button>
-        </div>
-    );
+  return (
+    <div>
+      <button onClick={goBack}>뒤로가기</button>
+      <button onClick={goHome}>홈으로</button>
+    </div>
+  );
 }
 
 export default HistorySample;

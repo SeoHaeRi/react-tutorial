@@ -1,20 +1,22 @@
 import React from 'react';
 import Profile from './Profile';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 
 function Profiles() {
-    return (
-        <div>
-            <h3>사용자 목록</h3>
-            <ul>
-                <li><Link to="/profiles/velopert">velopert</Link></li>
-                <li><Link to="/profiles/homer">homer</Link></li>
-            </ul>
+  return (
+    <div>
+      <h3>사용자 목록</h3>
+      <ul>
+        <li><Link to="homer">homer</Link></li>
+        <li><Link to="haeri">haeri</Link></li>
+      </ul>
 
-            <Route path="/profiles" exact render={() => <div>유저를 선택해주세요.</div>} />
-            <Route path="/profiles/:username" component={Profile} />
-        </div>
-    );
+      <Routes>
+        <Route path="/*" element={<div>유저를 선택해주세요.</div>} />
+        <Route path=":username" element={<Profile />} />
+      </Routes>
+    </div>
+  );
 };
 
 export default Profiles;
